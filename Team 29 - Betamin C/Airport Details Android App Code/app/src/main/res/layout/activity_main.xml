@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background_app"
+    android:gravity="center"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/hanka_card"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:elevation="20dp"
+        android:layout_centerHorizontal="true"
+        app:cardElevation="20dp"
+        app:cardCornerRadius="15sp">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/banner"/>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+    <ProgressBar
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/hanka_card"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:outlineSpotShadowColor="@android:color/holo_red_light"
+        android:id="@+id/progress_bar"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="40dp"
+            android:text="Beta GO"/>
+
+
+        <ImageView
+            android:id="@+id/qr_code_scan"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/ic_baseline_qr_code_scanner_24"/>
+
+
+        <EditText
+            android:id="@+id/editext"
+            android:layout_width="330dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/editfield"
+            android:ems="10"
+            android:hint="Enter IATA Code"
+            android:elevation="2dp"
+            android:inputType="textShortMessage"
+            android:paddingLeft="15dp"
+            android:textColor="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50sp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/button"
+            android:text="Submit"/>
+
+    </LinearLayout>
+
+
+
+
+
+
+</RelativeLayout>
