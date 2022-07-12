@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+   
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>GETMyBus.com</title>
+  </head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">GETMyBus.com</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contacts</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">About</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+      <div class="container my-4">
+          <h2 class="text-center">GETMyBus.com</h2>
+         
+            <div class="form-group">
+              <label for="title">BUSNo.</label>
+              <input type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Enter BUSNo.",class="complete" style="width: 17%;">
+              <small id="emailHelp" class="form-text text-muted">Add an item to the list</small>
+            </div>
+            <div class="form-group">
+                 <label for="description">A/D</label>
+                <input type="text" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Enter A/D",class="complete" style="width: 17%;">
+              </div>
+              <div class="form-group">
+                <label for="Location">Location</label>
+               <!-- <textarea class="form-control" id="description" rows="3" class="complete" style="17%"></textarea> -->
+               <input type="text" class="form-control" id="location" aria-describedby="emailHelp" placeholder="Enter Location",class="complete" style="width: 17%;">
+             </div>
+             <button  id="add" class="btn btn-primary">Add BUS</button> 
+            <button id="adde" class="btn btn-primary">ClearAll Buses</button>
+          <div id="items" class="my-4">
+            <h2>Your Items</h2>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <!-- <th scope="col">#</th> -->
+                    <th scope="col">SNo</th>
+                    <th scope="col">BUS No.</th>
+                    <th scope="col">A/D</th>
+                    <th scope="col">Location</th>
+                    <!-- <th scope="col">Actions</th> -->
+                  </tr>
+                </thead>
+                <tbody id="tablebody">
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>enter</td>
+                    <td>enter</td>
+                    <td>enter</td>
+                    <!-- <td><button class="btn btn-primary">delete</button></td> -->
+                    <!-- <td>@mdo</td> -->
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+      </div>
+
+   
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script>
+        itemJsonArray=[]; // we have declared itemJsonArray here beacuses to access this array in update function also
+        function getnupdate(){
+            console.log("Upadting Lists...");
+           let tit=document.getElementById("title").value;
+           let desc=document.getElementById("description").value;
+           let loc=document.getElementById("location").value;
+           if(document.getElementById("title").value!='' && document.getElementById("description").value!='' && document.getElementById("location").value!=''){
+             if(localStorage.getItem('itemsJson')==null){
+                 itemJsonArray.push([tit,desc,loc]);
+                 localStorage.setItem('itemsJson',JSON.stringify(itemJsonArray))
+             }
+             else{
+                 itemJsonArraystr=localStorage.getItem('itemsJson')
+                 itemJsonArray=JSON.parse(itemJsonArraystr);
+                 itemJsonArray.push([tit,desc,loc]);
+                 localStorage.setItem('itemsJson',JSON.stringify(itemJsonArray))
+             }
+             clea();
+             update();
+           }
+        }
+        function update(){
+        
+             tablebody=document.getElementById("tablebody")
+             let str="";
+             itemJsonArray.forEach((element,index) => {
+                 str+=`<tr>
+                    <th scope="row">${index+1}</th>
+                    <td>${element[0]}</td>
+                    <td>${element[1]}</td>
+                    <td>${element[2]}</td>
+                
+                  </tr>`;
+             });
+             tablebody.innerHTML=str;
+         
+        }
+        add=document.getElementById("add");
+        //update();
+       
+        add.addEventListener("click",getnupdate);
+      
+        function clea(){
+        document.getElementById("description").value='';
+        document.getElementById("title").value='';
+        document.getElementById("location").value='';
+        }
+        // update();
+        function deleted(itemindex){
+            console.log("del",itemindex);
+            itemJsonArraystr=localStorage.getItem('itemsJson')
+            itemJsonArray=JSON.parse(itemJsonArraystr);
+            // here we will delete the itemindex
+            itemJsonArray.splice(itemindex,1);
+            localStorage.setItem('itemsJson',JSON.stringify(itemJsonArray)) 
+            update();
+        }
+        adde=document.getElementById("adde");
+        adde.addEventListener("click",kol);
+        function kol(){
+             if(confirm("DO you really want to clear")){
+                console.log("clearing the data");
+                localStorage.clear();
+                itemJsonArray.splice(0,itemJsonArray.length);
+                update()
+             }
+        }
+
+    </script>
+  </body>
+</html>
